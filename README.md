@@ -3,7 +3,8 @@
 # WordPress plugin requirements
 WordPress drop-in to check requirements
 
-Just grab the underDEV_Requirements.php file and include it in your project or install via Composer: `composer install underdev/requirements`
+Just grab the underDEV_Requirements.php file and include it in your project or install via Composer:
+`composer install underdev/requirements`
 
 Supports checks:
 * PHP version
@@ -49,6 +50,10 @@ $requirements = new underDEV_Requirements( 'My Test Plugin', array(
 	)
 ) );
 
+/**
+ * Check if requirements has been satisfied
+ * If not - display the admin notice and exit from the file
+ */
 if ( ! $requirements->satisfied() ) {
 
 	add_action( 'admin_notices', array( $requirements, 'notice' ) );
@@ -56,6 +61,8 @@ if ( ! $requirements->satisfied() ) {
 
 }
 
-// checks passed - load the plugin
+/**
+ * Checks passed - load the plugin
+ */
 new My_Test_Plugin();
 ```
