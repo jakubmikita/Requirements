@@ -3,7 +3,9 @@
 # WordPress plugin requirements
 WordPress drop-in to check requirements
 
-Just grab the underDEV_Requirements.php file and include it in your project or install via Composer: `composer install underdev/requirements`
+Just grab the underDEV_Requirements.php file and include it in your project or install via Composer:
+
+`composer install underdev/requirements`
 
 Supports checks:
 * PHP version
@@ -11,6 +13,8 @@ Supports checks:
 * WordPress version
 * Active plugins and their versions
 * Active theme
+* Function collisions
+* Class collisions
 
 It doesn't brake the user action, ie. activating many plugins at once. Will just display a message in admin area:
 
@@ -36,19 +40,25 @@ require_once( 'underDEV_Requirements.php' );
 require_once( 'vendor/underdev/requirements/underDEV_Requirements.php' );
 
 $requirements = new underDEV_Requirements( 'My Test Plugin', array(
-	'php'            => '5.3',
-	'php_extensions' => array( 'soap' ),
-	'wp'             => '4.8',
-	'plugins'        => array(
+	'php'                => '5.3',
+	'php_extensions'     => array( 'soap' ),
+	'wp'                 => '4.8',
+	'plugins'            => array(
 		'akismet/akismet.php'   => array( 'name' => 'Akismet', 'version' => '3.0' ),
 		'hello-dolly/hello.php' => array( 'name' => 'Hello Dolly', 'version' => '1.5' )
 	),
-	'theme'          => array(
+	'theme'              => array(
 		'slug' => 'twentysixteen',
 		'name' => 'Twenty Sixteen'
-	)
+	),
+	'function_collision' => array( 'my_function_name', 'some_other_potential_collision' ),
+	'class_collision'    => array( 'My_Test_Plugin', 'My_Test_Plugin_Other_Class' ),
 ) );
 
+/**
+ * Check if requirements has been satisfied
+ * If not - display the admin notice and exit from the file
+ */
 if ( ! $requirements->satisfied() ) {
 
 	add_action( 'admin_notices', array( $requirements, 'notice' ) );
@@ -56,6 +66,8 @@ if ( ! $requirements->satisfied() ) {
 
 }
 
-// checks passed - load the plugin
+/**
+ * Checks passed - load the plugin
+ */
 new My_Test_Plugin();
 ```
