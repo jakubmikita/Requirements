@@ -187,6 +187,30 @@ class underDEV_Requirements {
 	}
 
 	/**
+	 * Check class collision
+	 * @param  array $classes class names
+	 * @return void
+	 */
+	public function check_class_collision( $classes ) {
+
+		$collisions = array();
+
+		foreach ( $classes as $class ) {
+			if ( class_exists( $class ) ) {
+				$collisions[] = $class;
+			}
+		}
+
+		if ( ! empty( $collisions ) ) {
+			$this->errors[] = sprintf(
+				_n( 'register %s class but it\'s already defined', 'register %s classes but these are already defined', count( $collisions ) ),
+				implode( ', ', $collisions )
+			);
+		}
+
+	}
+
+	/**
 	 * Check if requirements has been satisfied
 	 * @return boolean
 	 */

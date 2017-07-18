@@ -14,6 +14,7 @@ Supports checks:
 * Active plugins and their versions
 * Active theme
 * Function collisions
+* Class collisions
 
 It doesn't brake the user action, ie. activating many plugins at once. Will just display a message in admin area:
 
@@ -51,6 +52,7 @@ $requirements = new underDEV_Requirements( 'My Test Plugin', array(
 		'name' => 'Twenty Sixteen'
 	),
 	'function_collision' => array( 'my_function_name', 'some_other_potential_collision' ),
+	'class_collision'    => array( 'My_Test_Plugin', 'My_Test_Plugin_Other_Class' ),
 ) );
 
 /**
