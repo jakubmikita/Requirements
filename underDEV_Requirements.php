@@ -4,7 +4,7 @@
  * @autor   Kuba Mikita (jakub@underdev.it)
  * @version 1.0
  * @usage   see https://github.com/Kubitomakita/Requirements
- * 
+ *
  * Supported tests:
  * - php - version
  * - php_extensions - if loaded
@@ -37,11 +37,11 @@ class underDEV_Requirements {
 
 	/**
 	 * Class constructor
-	 * @param string $plugin_name plugin display name 
+	 * @param string $plugin_name plugin display name
 	 * @param array  $checks      checks to perform
 	 */
 	public function __construct( $plugin_name = '', $checks = array() ) {
-		
+
 		$this->checks      = $checks;
 		$this->plugin_name = $plugin_name;
 
@@ -58,13 +58,13 @@ class underDEV_Requirements {
 		foreach ( $this->checks as $thing_to_check => $comparsion ) {
 
 			$method_name = 'check_' . $thing_to_check;
-			
+
 			if ( method_exists( $this, $method_name ) ) {
 				call_user_func( array( $this, $method_name ), $comparsion );
 			}
 
 		}
-		
+
 	}
 
 	/**
@@ -96,7 +96,7 @@ class underDEV_Requirements {
 		}
 
 		if ( ! empty( $missing_extensions ) ) {
-			$this->errors[] = sprintf( 
+			$this->errors[] = sprintf(
 				_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ) ),
 				implode( ', ', $missing_extensions )
 			);
@@ -136,7 +136,7 @@ class underDEV_Requirements {
 		}
 
 		foreach ( $plugins as $plugin_file => $plugin_data ) {
-			
+
 			if ( ! in_array( $plugin_file, $active_plugins ) ) {
 				$this->errors[] = sprintf( '%s plugin active', $plugin_data['name'] );
 			} else if ( version_compare( $active_plugins_versions[ $plugin_file ], $plugin_data['version'], '<' ) ) {
@@ -163,6 +163,30 @@ class underDEV_Requirements {
 	}
 
 	/**
+	 * Check function collision
+	 * @param  array $functions function names
+	 * @return void
+	 */
+	public function check_function_collision( $functions ) {
+
+		$collisions = array();
+
+		foreach ( $functions as $function ) {
+			if ( function_exists( $function ) ) {
+				$collisions[] = $function;
+			}
+		}
+
+		if ( ! empty( $collisions ) ) {
+			$this->errors[] = sprintf(
+				_n( 'register %s function but it\'s already taken', 'register %s functions but these are already taken', count( $collisions ) ),
+				implode( ', ', $collisions )
+			);
+		}
+
+	}
+
+	/**
 	 * Check if requirements has been satisfied
 	 * @return boolean
 	 */
@@ -175,7 +199,7 @@ class underDEV_Requirements {
 	 * @return void
 	 */
 	public function notice() {
-		
+
 		echo '<div class="error">';
 
 			echo '<p><strong>Plugin ' . $this->plugin_name . ' cannot be loaded</strong> because it needs:</p>';
