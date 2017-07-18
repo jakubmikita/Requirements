@@ -2,7 +2,7 @@
 /**
  * Requirements checks for WordPress plugin
  * @autor   Kuba Mikita (jakub@underdev.it)
- * @version 1.1
+ * @version 1.2
  * @usage   see https://github.com/Kubitomakita/Requirements
  */
 
