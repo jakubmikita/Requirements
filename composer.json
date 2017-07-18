@@ -9,5 +9,7 @@
     }
   ],
   "require": {},
-  "autoload": {}
+  "autoload": {
+    "classmap": ["underDEV_Requirements.php"]
+  }
 }
