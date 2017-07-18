@@ -4,6 +4,7 @@
 WordPress drop-in to check requirements
 
 Just grab the underDEV_Requirements.php file and include it in your project or install via Composer:
+
 `composer install underdev/requirements`
 
 Supports checks:
