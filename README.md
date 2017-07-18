@@ -55,9 +55,12 @@ $requirements = new underDEV_Requirements( 'My Test Plugin', array(
 	),
 	'function_collision' => array( 'my_function_name', 'some_other_potential_collision' ),
 	'class_collision'    => array( 'My_Test_Plugin', 'My_Test_Plugin_Other_Class' ),
-	'custom_check'       => 'thing to check',
+	'custom_check'       => 'thing to check', // this is not default check and will have to be registered
 ) );
 
+/**
+ * Add your own check
+ */
 function my_plugin_custom_check( $comparsion, $r ) {
 	if ( $comparsion != 'thing to check' ) {
 		$r->add_error( 'this thing to be that' );
