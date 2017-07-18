@@ -226,7 +226,7 @@ class underDEV_Requirements {
 
 		echo '<div class="error">';
 
-			echo '<p><strong>Plugin ' . $this->plugin_name . ' cannot be loaded</strong> because it needs:</p>';
+			echo '<p><strong>The ' . esc_html( $this->plugin_name ) . ' plugin cannot be loaded</strong> because it needs:</p>';
 
 			echo '<ul style="list-style: disc; padding-left: 20px;">';
 
