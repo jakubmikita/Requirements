@@ -5,7 +5,7 @@ WordPress drop-in to check requirements
 
 Just grab the underDEV_Requirements.php file and include it in your project or install via Composer:
 
-`composer install underdev/requirements`
+`composer require underdev/requirements`
 
 Supports checks:
 * PHP version
@@ -35,9 +35,9 @@ Version: 1.0
 require_once( 'underDEV_Requirements.php' );
 
 /**
- * If installed via Composer
+ * If installed via Composer it's included in the autoloader
  */
-require_once( 'vendor/underdev/requirements/underDEV_Requirements.php' );
+require_once( 'vendor/autoload.php' );
 
 $requirements = new underDEV_Requirements( 'My Test Plugin', array(
 	'php'                => '5.3',
