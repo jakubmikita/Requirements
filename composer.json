@@ -9,5 +9,9 @@
     }
   ],
   "require": {},
-  "autoload": {}
+  "autoload": {
+    "files": [
+      "underDEV_Requirements.php"
+    ]
+  }
 }
