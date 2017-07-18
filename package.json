@@ -1,0 +1,21 @@
+{
+  "name": "underdev/requirements",
+  "version": "1.0",
+  "description": "WordPress drop-in to check requirements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kubitomakita/Requirements.git"
+  },
+  "author": "underDEV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kubitomakita/Requirements/issues"
+  },
+  "homepage": "https://github.com/Kubitomakita/Requirements/#readme",
+  "devDependencies": {
+  }
+}
