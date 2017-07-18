@@ -3,7 +3,7 @@
 # WordPress plugin requirements
 WordPress drop-in to check requirements
 
-Just grab the underDEV_Requirements.php file and include it in your project or install via Composer:
+Just grab the src/Requirements.php file and include it in your project or install via Composer:
 
 `composer install underdev/requirements`
 
@@ -20,6 +20,13 @@ It doesn't brake the user action, ie. activating many plugins at once. Will just
 
 ![Requirements in WP Admin](https://www.wpart.co/img/requirements.png)
 
+## Installation
+
+Run `composer require kubitomakita/requirements`
+
+Alternatively, clone or download this repo into the `vendor/` folder in your plugin, and include/require the `Requirements.php` file.
+
+
 ## Sample usage
 
 ```php
@@ -32,14 +39,9 @@ Version: 1.0
 /**
  * If installed by download
  */
-require_once( 'underDEV_Requirements.php' );
+require 'vendor/autoload.php';
 
-/**
- * If installed via Composer
- */
-require_once( 'vendor/underdev/requirements/underDEV_Requirements.php' );
-
-$requirements = new underDEV_Requirements( 'My Test Plugin', array(
+$requirements = new Kubitomakita\Requirements\Requirements( 'My Test Plugin', array(
 	'php'                => '5.3',
 	'php_extensions'     => array( 'soap' ),
 	'wp'                 => '4.8',
