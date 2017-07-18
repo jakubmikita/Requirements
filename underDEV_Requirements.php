@@ -2,7 +2,7 @@
 /**
  * Requirements checks for WordPress plugin
  * @autor   Kuba Mikita (jakub@underdev.it)
- * @version 1.0
+ * @version 1.1
  * @usage   see https://github.com/Kubitomakita/Requirements
  *
  * Supported tests:
@@ -11,6 +11,8 @@
  * - wp - version
  * - plugins - active and versions check
  * - theme - active
+ * - function_collision
+ * - class_collision
  */
 
 if ( ! class_exists( 'underDEV_Requirements' ) ) :
