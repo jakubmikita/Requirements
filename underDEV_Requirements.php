@@ -4,15 +4,6 @@
  * @autor   Kuba Mikita (jakub@underdev.it)
  * @version 1.1
  * @usage   see https://github.com/Kubitomakita/Requirements
- *
- * Supported tests:
- * - php - version
- * - php_extensions - if loaded
- * - wp - version
- * - plugins - active and versions check
- * - theme - active
- * - function_collision
- * - class_collision
  */
 
 if ( ! class_exists( 'underDEV_Requirements' ) ) :
@@ -87,7 +78,7 @@ class underDEV_Requirements {
 		foreach ( $this->checks as $thing_to_check => $comparsion ) {
 
 			if ( isset( $this->check_methods[ $thing_to_check ] ) && is_callable( $this->check_methods[ $thing_to_check ] ) ) {
-				call_user_func( $this->check_methods[ $thing_to_check ], $comparsion );
+				call_user_func( $this->check_methods[ $thing_to_check ], $comparsion, $this );
 			}
 
 		}
@@ -145,23 +136,25 @@ class underDEV_Requirements {
 
 	/**
 	 * Check PHP version
-	 * @param  string $version version needed
+	 * @param  string $version      version needed
+	 * @param  object $requirements requirements class
 	 * @return void
 	 */
-	public function check_php( $version ) {
+	public function check_php( $version, $requirements ) {
 
 		if ( version_compare( phpversion(), $version, '<' ) ) {
-			$this->add_error( sprintf( 'PHP at least in version %s. Your version is %s', $version, phpversion() ) );
+			$requirements->add_error( sprintf( 'PHP at least in version %s. Your version is %s', $version, phpversion() ) );
 		}
 
 	}
 
 	/**
 	 * Check PHP extensions
-	 * @param  string $extensions array of extension names
+	 * @param  string $extensions   array of extension names
+	 * @param  object $requirements requirements class
 	 * @return void
 	 */
-	public function check_php_extensions( $extensions ) {
+	public function check_php_extensions( $extensions, $requirements ) {
 
 		$missing_extensions = array();
 
@@ -172,7 +165,7 @@ class underDEV_Requirements {
 		}
 
 		if ( ! empty( $missing_extensions ) ) {
-			$this->add_error( sprintf(
+			$requirements->add_error( sprintf(
 				_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ) ),
 				implode( ', ', $missing_extensions )
 			) );
@@ -182,24 +175,26 @@ class underDEV_Requirements {
 
 	/**
 	 * Check WordPress version
-	 * @param  string $version version needed
+	 * @param  string $version      version needed
+	 * @param  object $requirements requirements class
 	 * @return void
 	 */
-	public function check_wp( $version ) {
+	public function check_wp( $version, $requirements ) {
 
 		if ( version_compare( get_bloginfo( 'version' ), $version, '<' ) ) {
-			$this->add_error( sprintf( 'WordPress at least in version %s. Your version is %s', $version, get_bloginfo( 'version' ) ) );
+			$requirements->add_error( sprintf( 'WordPress at least in version %s. Your version is %s', $version, get_bloginfo( 'version' ) ) );
 		}
 
 	}
 
 	/**
 	 * Check if plugins are active and are in needed versions
-	 * @param  array $plugins array with plugins,
-	 *                        where key is the plugin file and value is the version
+	 * @param  array $plugins       array with plugins,
+	 *                              where key is the plugin file and value is the version
+	 * @param  object $requirements requirements class
 	 * @return void
 	 */
-	public function check_plugins( $plugins ) {
+	public function check_plugins( $plugins, $requirements ) {
 
 		$active_plugins_raw      = wp_get_active_and_valid_plugins();
 		$active_plugins          = array();
@@ -214,9 +209,9 @@ class underDEV_Requirements {
 		foreach ( $plugins as $plugin_file => $plugin_data ) {
 
 			if ( ! in_array( $plugin_file, $active_plugins ) ) {
-				$this->add_error( sprintf( '%s plugin active', $plugin_data['name'] ) );
+				$requirements->add_error( sprintf( '%s plugin active', $plugin_data['name'] ) );
 			} else if ( version_compare( $active_plugins_versions[ $plugin_file ], $plugin_data['version'], '<' ) ) {
-				$this->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
+				$requirements->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
 			}
 
 		}
@@ -225,25 +220,27 @@ class underDEV_Requirements {
 
 	/**
 	 * Check if theme is active
-	 * @param  array $needed_theme theme data
+	 * @param  array  $needed_theme theme data
+	 * @param  object $requirements requirements class
 	 * @return void
 	 */
-	public function check_theme( $needed_theme ) {
+	public function check_theme( $needed_theme, $requirements ) {
 
 		$theme = wp_get_theme();
 
 		if ( $theme->get_template() != $needed_theme['slug'] ) {
-			$this->add_error( sprintf( '%s theme active', $needed_theme['name'] ) );
+			$requirements->add_error( sprintf( '%s theme active', $needed_theme['name'] ) );
 		}
 
 	}
 
 	/**
 	 * Check function collision
-	 * @param  array $functions function names
+	 * @param  array  $functions    function names
+	 * @param  object $requirements requirements class
 	 * @return void
 	 */
-	public function check_function_collision( $functions ) {
+	public function check_function_collision( $functions, $requirements ) {
 
 		$collisions = array();
 
@@ -254,7 +251,7 @@ class underDEV_Requirements {
 		}
 
 		if ( ! empty( $collisions ) ) {
-			$this->add_error( sprintf(
+			$requirements->add_error( sprintf(
 				_n( 'register %s function but it\'s already taken', 'register %s functions but these are already taken', count( $collisions ) ),
 				implode( ', ', $collisions )
 			) );
@@ -264,10 +261,11 @@ class underDEV_Requirements {
 
 	/**
 	 * Check class collision
-	 * @param  array $classes class names
+	 * @param  array  $classes      class names
+	 * @param  object $requirements requirements class
 	 * @return void
 	 */
-	public function check_class_collision( $classes ) {
+	public function check_class_collision( $classes, $requirements ) {
 
 		$collisions = array();
 
@@ -278,7 +276,7 @@ class underDEV_Requirements {
 		}
 
 		if ( ! empty( $collisions ) ) {
-			$this->add_error( sprintf(
+			$requirements->add_error( sprintf(
 				_n( 'register %s class but it\'s already defined', 'register %s classes but these are already defined', count( $collisions ) ),
 				implode( ', ', $collisions )
 			) );
