@@ -105,6 +105,7 @@ class underDEV_Requirements {
 	 * @return boolean
 	 */
 	public function satisfied() {
+		$this->check();
 		return empty( $this->errors );
 	}
 
