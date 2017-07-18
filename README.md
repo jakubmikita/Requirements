@@ -7,7 +7,7 @@ Just grab the underDEV_Requirements.php file and include it in your project or i
 
 `composer require underdev/requirements`
 
-Supports checks:
+Default checks:
 * PHP version
 * PHP extensions loaded
 * WordPress version
@@ -15,6 +15,8 @@ Supports checks:
 * Active theme
 * Function collisions
 * Class collisions
+
+You can add also your own checks. See the example below.
 
 It doesn't brake the user action, ie. activating many plugins at once. Will just display a message in admin area:
 
@@ -53,10 +55,22 @@ $requirements = new underDEV_Requirements( 'My Test Plugin', array(
 	),
 	'function_collision' => array( 'my_function_name', 'some_other_potential_collision' ),
 	'class_collision'    => array( 'My_Test_Plugin', 'My_Test_Plugin_Other_Class' ),
+	'custom_check'       => 'thing to check', // this is not default check and will have to be registered
 ) );
 
 /**
- * Check if requirements has been satisfied
+ * Add your own check
+ */
+function my_plugin_custom_check( $comparsion, $r ) {
+	if ( $comparsion != 'thing to check' ) {
+		$r->add_error( 'this thing to be that' );
+	}
+}
+
+$requirements->add_check( 'custom_check', 'my_plugin_custom_check' );
+
+/**
+ * Run all the checks and check if requirements has been satisfied
  * If not - display the admin notice and exit from the file
  */
 if ( ! $requirements->satisfied() ) {
