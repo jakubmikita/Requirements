@@ -204,7 +204,8 @@ class underDEV_Requirements {
 		foreach ( $active_plugins_raw as $plugin_full_path ) {
 			$plugin_file                             = str_replace( WP_PLUGIN_DIR . '/', '', $plugin_full_path );
 			$active_plugins[]                        = $plugin_file;
-			$active_plugins_versions[ $plugin_file ] = @get_file_data( $plugin_full_path, array( 'Version' ) )[0];
+			$plugin_api_data                         = @get_file_data( $plugin_full_path, array( 'Version' ) );
+			$active_plugins_versions[ $plugin_file ] = $plugin_api_data[0];
 		}
 
 		foreach ( $plugins as $plugin_file => $plugin_data ) {
