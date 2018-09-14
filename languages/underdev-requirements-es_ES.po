@@ -1,0 +1,62 @@
+# Copyright (C) 2018 underdev-requirements
+# This file is distributed under the same license as the underdev/requirements package.
+msgid ""
+msgstr ""
+"Project-Id-Version: underdev-requirements\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.1.1\n"
+"Last-Translator: Daniel M. Hendricks\n"
+"Language: es\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: ../underDEV_Requirements.php:120
+msgid "<strong>%s</strong> cannot be activated because it requires:"
+msgstr "<strong>%s</strong> no se puede activar porque requiere:"
+
+#: ../underDEV_Requirements.php:147
+msgid "Minimum required version of PHP is %s. Your version is %s"
+msgstr "La versión mínima requerida de PHP es %s. Su versión es %s"
+
+#: ../underDEV_Requirements.php:170
+msgid "PHP extension: %s"
+msgid_plural "PHP extensions: %s"
+msgstr[0] "Extensión PHP: %s"
+msgstr[1] "Extensiones PHP: %s"
+
+#: ../underDEV_Requirements.php:187
+msgid "Minimum required versioin of WordPress is %s. Your version is %s"
+msgstr "Mínimo requerido versioin de WordPress es %s. Su versión es %s"
+
+#: ../underDEV_Requirements.php:215
+msgid "Required plugin: %s"
+msgstr "Plugin requerido: %s"
+
+#: ../underDEV_Requirements.php:217
+msgid "Minimum required version of %s plugin is %s. Your version is %s"
+msgstr "La versión mínima requerida del plugin %s es %s. Su versión es %s"
+
+#: ../underDEV_Requirements.php:235
+msgid "Required theme: %s"
+msgstr "Tema Requerido: %s"
+
+#: ../underDEV_Requirements.php:258
+msgid "register %s function but it already exists"
+msgid_plural "register %s functions but they already exist"
+msgstr[0] "registrar %s función pero ya existe"
+msgstr[1] "registrar %s funciones pero ya existe"
+
+#: ../underDEV_Requirements.php:284
+msgid "register %s class but it's already defined"
+msgid_plural "register %s classes but they are already defined"
+msgstr[0] "registrar %s clase pero ya está definido"
+msgstr[1] "registrar %s clases pero ya está definido"
