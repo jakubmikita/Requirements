@@ -1,9 +1,12 @@
-[![Latest Stable Version](https://poser.pugx.org/underdev/requirements/v/stable)](https://packagist.org/packages/underdev/requirements) [![Total Downloads](https://poser.pugx.org/underdev/requirements/downloads)](https://packagist.org/packages/underdev/requirements) [![Latest Unstable Version](https://poser.pugx.org/underdev/requirements/v/unstable)](https://packagist.org/packages/underdev/requirements)
+[![Latest Stable Version](https://poser.pugx.org/underdev/requirements/v/stable)](https://packagist.org/packages/underdev/requirements)
+[![Total Downloads](https://poser.pugx.org/underdev/requirements/downloads)](https://packagist.org/packages/underdev/requirements)
+[![Latest Unstable Version](https://poser.pugx.org/underdev/requirements/v/unstable)](https://packagist.org/packages/underdev/requirements)
 
 # WordPress plugin requirements
-WordPress drop-in to check requirements
 
-Just grab the underDEV_Requirements.php file and include it in your project or install via Composer:
+A WordPress drop-in to check requirements.
+
+Simple include the underDEV_Requirements.php file in your project or install and load it via Composer:
 
 `composer require underdev/requirements`
 
@@ -16,9 +19,9 @@ Default checks:
 * Function collisions
 * Class collisions
 
-You can add also your own checks. See the example below.
+You can add also your own custom checks. See the example below.
 
-It doesn't brake the user action, ie. activating many plugins at once. Will just display a message in admin area:
+It doesn't break the user action, such as activating many plugins at once. It will simply display a notice in the admin area:
 
 ![Requirements in WP Admin](https://www.wpart.co/img/requirements.png)
 
