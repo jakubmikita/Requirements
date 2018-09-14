@@ -117,7 +117,7 @@ class underDEV_Requirements {
 
 		echo '<div class="error">';
 
-			echo '<p><strong>The ' . esc_html( $this->plugin_name ) . ' plugin cannot be loaded</strong> because it needs:</p>';
+			echo '<p>' . sprintf( __( '<strong>%s</strong> cannot be activated because it requires:', esc_html( $this->plugin_name ), 'underdev-requirements' ) ) . '</p>';
 
 			echo '<ul style="list-style: disc; padding-left: 20px;">';
 
@@ -144,7 +144,7 @@ class underDEV_Requirements {
 	public function check_php( $version, $requirements ) {
 
 		if ( version_compare( phpversion(), $version, '<' ) ) {
-			$requirements->add_error( sprintf( 'PHP at least in version %s. Your version is %s', $version, phpversion() ) );
+			$requirements->add_error( sprintf( __( 'Minimum required version of PHP is %s. Your version is %s', 'underdev-requirements' ), $version, phpversion() ) );
 		}
 
 	}
@@ -168,7 +168,8 @@ class underDEV_Requirements {
 		if ( ! empty( $missing_extensions ) ) {
 			$requirements->add_error( sprintf(
 				_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ) ),
-				implode( ', ', $missing_extensions )
+				implode( ', ', $missing_extensions ),
+				'underdev-requirements'
 			) );
 		}
 
@@ -183,7 +184,7 @@ class underDEV_Requirements {
 	public function check_wp( $version, $requirements ) {
 
 		if ( version_compare( get_bloginfo( 'version' ), $version, '<' ) ) {
-			$requirements->add_error( sprintf( 'WordPress at least in version %s. Your version is %s', $version, get_bloginfo( 'version' ) ) );
+			$requirements->add_error( sprintf( __( 'Minimum required versioin of WordPress is %s. Your version is %s', 'underdev-requirements' ), $version, get_bloginfo( 'version' ) ) );
 		}
 
 	}
@@ -211,9 +212,9 @@ class underDEV_Requirements {
 		foreach ( $plugins as $plugin_file => $plugin_data ) {
 
 			if ( ! in_array( $plugin_file, $active_plugins ) ) {
-				$requirements->add_error( sprintf( '%s plugin active', $plugin_data['name'] ) );
+				$requirements->add_error( sprintf( __( 'Required plugin: %s', 'underdev-requirements' ), $plugin_data['name'] ) );
 			} else if ( version_compare( $active_plugins_versions[ $plugin_file ], $plugin_data['version'], '<' ) ) {
-				$requirements->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
+				$requirements->add_error( sprintf( __( 'Minimum required version of %s plugin is %s. Your version is %s', 'underdev-requirements' ), $plugin_data['name'], $plugin_data['version'], $active_plugins_versions[ $plugin_file ] ) );
 			}
 
 		}
@@ -231,7 +232,7 @@ class underDEV_Requirements {
 		$theme = wp_get_theme();
 
 		if ( $theme->get_template() != $needed_theme['slug'] ) {
-			$requirements->add_error( sprintf( '%s theme active', $needed_theme['name'] ) );
+			$requirements->add_error( sprintf( __( 'Required theme: %s', 'underdev-requirements' ), $needed_theme['name'] ) );
 		}
 
 	}
@@ -254,8 +255,9 @@ class underDEV_Requirements {
 
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error( sprintf(
-				_n( 'register %s function but it\'s already taken', 'register %s functions but these are already taken', count( $collisions ) ),
-				implode( ', ', $collisions )
+				_n( "register %s function but it already exists", 'register %s functions but they already exist', count( $collisions ) ),
+				implode( ', ', $collisions ),
+				'underdev-requirements'
 			) );
 		}
 
@@ -279,8 +281,9 @@ class underDEV_Requirements {
 
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error( sprintf(
-				_n( 'register %s class but it\'s already defined', 'register %s classes but these are already defined', count( $collisions ) ),
-				implode( ', ', $collisions )
+				_n( "register %s class but it's already defined", 'register %s classes but they are already defined', count( $collisions ) ),
+				implode( ', ', $collisions ),
+				'underdev-requirements'
 			) );
 		}
 
