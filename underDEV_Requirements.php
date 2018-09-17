@@ -264,7 +264,7 @@ class underDEV_Requirements {
 
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error( sprintf(
-				_n( "register %s function but it already exists", 'register %s functions but they already exist', count( $collisions ) ),
+				_n( "Unable to register %s function: It already exists", "Unable to register %s functions: They already exist", count( $collisions ) ),
 				implode( ', ', $collisions ),
 				$this->textdomain
 			) );
@@ -290,7 +290,7 @@ class underDEV_Requirements {
 
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error( sprintf(
-				_n( "register %s class but it's already defined", 'register %s classes but they are already defined', count( $collisions ) ),
+				_n( "Unable to register %s class: It's already defined", "Unable to register %s classes: They're already defined", count( $collisions ) ),
 				implode( ', ', $collisions ),
 				$this->textdomain
 			) );
