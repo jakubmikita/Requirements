@@ -2,7 +2,7 @@
 /**
  * Requirements checks for WordPress plugin
  * @autor   Kuba Mikita (jakub@underdev.it)
- * @version 1.2.1
+ * @version 1.3.0
  * @usage   see https://github.com/Kubitomakita/Requirements
  */
 
@@ -35,6 +35,12 @@ class underDEV_Requirements {
 	protected $errors = array();
 
 	/**
+	 * The library text domain
+	 * @var string
+	 */
+	private $textdomain = 'underdev-requirements';
+
+	/**
 	 * Class constructor
 	 * @param string $plugin_name plugin display name
 	 * @param array  $to_check    checks to perform
@@ -43,6 +49,9 @@ class underDEV_Requirements {
 
 		$this->checks      = $to_check;
 		$this->plugin_name = $plugin_name;
+
+		// Load translations
+		load_textdomain( $this->textdomain, dirname( __FILE__ ) . '/languages/' . $this->textdomain . '-' . get_user_locale() . '.mo' );
 
 		// Add default checks
 		$this->add_check( 'php', array( $this, 'check_php' ) );
@@ -117,7 +126,7 @@ class underDEV_Requirements {
 
 		echo '<div class="error">';
 
-			echo '<p><strong>The ' . esc_html( $this->plugin_name ) . ' plugin cannot be loaded</strong> because it needs:</p>';
+			echo '<p>' . sprintf( __( '<strong>%s</strong> cannot be activated because it requires:', $this->textdomain ), esc_html( $this->plugin_name ) ) . '</p>';
 
 			echo '<ul style="list-style: disc; padding-left: 20px;">';
 
@@ -144,7 +153,7 @@ class underDEV_Requirements {
 	public function check_php( $version, $requirements ) {
 
 		if ( version_compare( phpversion(), $version, '<' ) ) {
-			$requirements->add_error( sprintf( 'PHP at least in version %s. Your version is %s', $version, phpversion() ) );
+			$requirements->add_error( sprintf( __( 'Minimum required version of PHP is %s. Your version is %s', $this->textdomain ), $version, phpversion() ) );
 		}
 
 	}
@@ -168,7 +177,8 @@ class underDEV_Requirements {
 		if ( ! empty( $missing_extensions ) ) {
 			$requirements->add_error( sprintf(
 				_n( 'PHP extension: %s', 'PHP extensions: %s', count( $missing_extensions ) ),
-				implode( ', ', $missing_extensions )
+				implode( ', ', $missing_extensions ),
+				$this->textdomain
 			) );
 		}
 
@@ -183,7 +193,7 @@ class underDEV_Requirements {
 	public function check_wp( $version, $requirements ) {
 
 		if ( version_compare( get_bloginfo( 'version' ), $version, '<' ) ) {
-			$requirements->add_error( sprintf( 'WordPress at least in version %s. Your version is %s', $version, get_bloginfo( 'version' ) ) );
+			$requirements->add_error( sprintf( __( 'Minimum required versioin of WordPress is %s. Your version is %s', $this->textdomain ), $version, get_bloginfo( 'version' ) ) );
 		}
 
 	}
@@ -211,9 +221,9 @@ class underDEV_Requirements {
 		foreach ( $plugins as $plugin_file => $plugin_data ) {
 
 			if ( ! in_array( $plugin_file, $active_plugins ) ) {
-				$requirements->add_error( sprintf( '%s plugin active', $plugin_data['name'] ) );
+				$requirements->add_error( sprintf( __( 'Required plugin: %s', $this->textdomain ), $plugin_data['name'] ) );
 			} else if ( version_compare( $active_plugins_versions[ $plugin_file ], $plugin_data['version'], '<' ) ) {
-				$requirements->add_error( sprintf( '%s plugin at least in version %s', $plugin_data['name'], $plugin_data['version'] ) );
+				$requirements->add_error( sprintf( __( 'Minimum required version of %s plugin is %s. Your version is %s', $this->textdomain ), $plugin_data['name'], $plugin_data['version'], $active_plugins_versions[ $plugin_file ] ) );
 			}
 
 		}
@@ -231,7 +241,7 @@ class underDEV_Requirements {
 		$theme = wp_get_theme();
 
 		if ( $theme->get_template() != $needed_theme['slug'] ) {
-			$requirements->add_error( sprintf( '%s theme active', $needed_theme['name'] ) );
+			$requirements->add_error( sprintf( __( 'Required theme: %s', $this->textdomain ), $needed_theme['name'] ) );
 		}
 
 	}
@@ -254,8 +264,9 @@ class underDEV_Requirements {
 
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error( sprintf(
-				_n( 'register %s function but it\'s already taken', 'register %s functions but these are already taken', count( $collisions ) ),
-				implode( ', ', $collisions )
+				_n( "Unable to register %s function: It already exists", "Unable to register %s functions: They already exist", count( $collisions ) ),
+				implode( ', ', $collisions ),
+				$this->textdomain
 			) );
 		}
 
@@ -279,8 +290,9 @@ class underDEV_Requirements {
 
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error( sprintf(
-				_n( 'register %s class but it\'s already defined', 'register %s classes but these are already defined', count( $collisions ) ),
-				implode( ', ', $collisions )
+				_n( "Unable to register %s class: It's already defined", "Unable to register %s classes: They're already defined", count( $collisions ) ),
+				implode( ', ', $collisions ),
+				$this->textdomain
 			) );
 		}
 

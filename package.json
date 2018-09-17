@@ -1,9 +1,9 @@
 {
-  "name": "underdev/requirements",
-  "version": "1.2",
+  "name": "requirements",
+  "version": "1.3.0",
   "description": "WordPress drop-in to check requirements",
-  "main": "index.js",
   "scripts": {
+    "translate": "wp-pot -s '*.php' -o ./languages/underdev-requirements.pot -p underdev-requirements",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,5 +17,6 @@
   },
   "homepage": "https://github.com/Kubitomakita/Requirements/#readme",
   "devDependencies": {
+    "wp-pot-cli": "1.0.0"
   }
 }
