@@ -44,13 +44,13 @@ msgid "Required theme: %s"
 msgstr ""
 
 #: ../underDEV_Requirements.php:258
-msgid "register %s function but it already exists"
-msgid_plural "register %s functions but they already exist"
+msgid "Unable to register %s function: It already exists"
+msgid_plural "Unable to register %s functions: They already exist"
 msgstr[0] ""
 msgstr[1] ""
 
 #: ../underDEV_Requirements.php:284
-msgid "register %s class but it's already defined"
-msgid_plural "register %s classes but they are already defined"
+msgid "Unable to register %s class: It's already defined"
+msgid_plural "Unable to register %s classes: They're already defined"
 msgstr[0] ""
 msgstr[1] ""
