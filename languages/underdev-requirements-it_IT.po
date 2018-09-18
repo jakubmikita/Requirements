@@ -27,7 +27,7 @@ msgstr "<strong>%s</strong> non può essere attivato perché richiede:"
 
 #: ../underDEV_Requirements.php:156
 msgid "Minimum required version of PHP is %s. Your version is %s"
-msgstr "The minimum required PHP version is %s. Your version is %s"
+msgstr "La versione PHP minima richiesta è %s. La tua versione è %s"
 
 #: ../underDEV_Requirements.php:179
 msgid "PHP extension: %s"
