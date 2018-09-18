@@ -1,5 +1,5 @@
 # Copyright (C) 2018 underdev-requirements
-# This file is distributed under the same license as the underdev/requirements package.
+# This file is distributed under the same license as the underdev-requirements package.
 msgid ""
 msgstr ""
 "Project-Id-Version: underdev-requirements\n"
@@ -13,44 +13,44 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../underDEV_Requirements.php:120
+#: ../underDEV_Requirements.php:129
 msgid "<strong>%s</strong> cannot be activated because it requires:"
 msgstr ""
 
-#: ../underDEV_Requirements.php:147
+#: ../underDEV_Requirements.php:156
 msgid "Minimum required version of PHP is %s. Your version is %s"
 msgstr ""
 
-#: ../underDEV_Requirements.php:170
+#: ../underDEV_Requirements.php:179
 msgid "PHP extension: %s"
 msgid_plural "PHP extensions: %s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../underDEV_Requirements.php:187
+#: ../underDEV_Requirements.php:196
 msgid "Minimum required versioin of WordPress is %s. Your version is %s"
 msgstr ""
 
-#: ../underDEV_Requirements.php:215
+#: ../underDEV_Requirements.php:224
 msgid "Required plugin: %s"
 msgstr ""
 
-#: ../underDEV_Requirements.php:217
+#: ../underDEV_Requirements.php:226
 msgid "Minimum required version of %s plugin is %s. Your version is %s"
 msgstr ""
 
-#: ../underDEV_Requirements.php:235
+#: ../underDEV_Requirements.php:244
 msgid "Required theme: %s"
 msgstr ""
 
-#: ../underDEV_Requirements.php:258
-msgid "Unable to register %s function: It already exists"
-msgid_plural "Unable to register %s functions: They already exist"
+#: ../underDEV_Requirements.php:267
+msgid "Unable to register the following function because it already exists: %s"
+msgid_plural "Unable to register the following functions because they already exist: %s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../underDEV_Requirements.php:284
-msgid "Unable to register %s class: It's already defined"
-msgid_plural "Unable to register %s classes: They're already defined"
+#: ../underDEV_Requirements.php:293
+msgid "Unable to register the following class because it already exists: %s"
+msgid_plural "Unable to register the following classes because they already exist: %s"
 msgstr[0] ""
 msgstr[1] ""

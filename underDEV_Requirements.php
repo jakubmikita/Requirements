@@ -2,7 +2,7 @@
 /**
  * Requirements checks for WordPress plugin
  * @autor   Kuba Mikita (jakub@underdev.it)
- * @version 1.2.1
+ * @version 1.3.0
  * @usage   see https://github.com/Kubitomakita/Requirements
  */
 
@@ -264,7 +264,7 @@ class underDEV_Requirements {
 
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error( sprintf(
-				_n( "Unable to register %s function: It already exists", "Unable to register %s functions: They already exist", count( $collisions ) ),
+				_n( "Unable to register the following function because it already exists: %s", 'Unable to register the following functions because they already exist: %s', count( $collisions ) ),
 				implode( ', ', $collisions ),
 				$this->textdomain
 			) );
@@ -290,7 +290,7 @@ class underDEV_Requirements {
 
 		if ( ! empty( $collisions ) ) {
 			$requirements->add_error( sprintf(
-				_n( "Unable to register %s class: It's already defined", "Unable to register %s classes: They're already defined", count( $collisions ) ),
+				_n( "Unable to register the following class because it already exists: %s", 'Unable to register the following classes because they already exist: %s', count( $collisions ) ),
 				implode( ', ', $collisions ),
 				$this->textdomain
 			) );
