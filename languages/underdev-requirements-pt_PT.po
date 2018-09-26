@@ -36,8 +36,8 @@ msgstr[0] "Extensão do PHP: %s"
 msgstr[1] "Extensões PHP: %s"
 
 #: ../underDEV_Requirements.php:196
-msgid "Minimum required versioin of WordPress is %s. Your version is %s"
-msgstr "Mínimo exigido versioin do WordPress é %s. Sua versão é %s"
+msgid "Minimum required version of WordPress is %s. Your version is %s"
+msgstr "Versão mínima exigida do WordPress é %s. Sua versão é %s"
 
 #: ../underDEV_Requirements.php:224
 msgid "Required plugin: %s"

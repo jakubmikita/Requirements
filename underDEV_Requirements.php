@@ -208,7 +208,7 @@ class underDEV_Requirements {
 	public function check_wp( $version, $requirements ) {
 
 		if ( version_compare( get_bloginfo( 'version' ), $version, '<' ) ) {
-			$requirements->add_error( sprintf( __( 'Minimum required versioin of WordPress is %s. Your version is %s', $this->textdomain ), $version, get_bloginfo( 'version' ) ) );
+			$requirements->add_error( sprintf( __( 'Minimum required version of WordPress is %s. Your version is %s', $this->textdomain ), $version, get_bloginfo( 'version' ) ) );
 		}
 
 	}
