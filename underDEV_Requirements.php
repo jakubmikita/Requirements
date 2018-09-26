@@ -10,17 +10,13 @@ if ( ! class_exists( 'underDEV_Requirements' ) ) :
 
 class underDEV_Requirements {
 
+	const VERSION = '1.3.0';
+
 	/**
 	 * Plugin display name
 	 * @var string
 	 */
 	protected $plugin_name;
-
-	/**
-	 * Version of this class
-	 * @var string
-	 */
-	protected static $version = '1.3.0';
 
 	/**
 	 * Array of checks
@@ -67,16 +63,6 @@ class underDEV_Requirements {
 		$this->add_check( 'theme', array( $this, 'check_theme' ) );
 		$this->add_check( 'function_collision', array( $this, 'check_function_collision' ) );
 		$this->add_check( 'class_collision', array( $this, 'check_class_collision' ) );
-
-	}
-
-	/**
-	 * Returns version of this class
-	 * @param  string 	$version 		Version
-	 */
-	public static function version() {
-
-		return self::$version;
 
 	}
 
