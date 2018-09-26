@@ -17,6 +17,12 @@ class underDEV_Requirements {
 	protected $plugin_name;
 
 	/**
+	 * Version of this class
+	 * @var string
+	 */
+	protected static $version = '1.3.0';
+
+	/**
 	 * Array of checks
 	 * @var array
 	 */
@@ -65,6 +71,16 @@ class underDEV_Requirements {
 	}
 
 	/**
+	 * Returns version of this class
+	 * @param  string 	$version 		Version
+	 */
+	public static function version() {
+
+		return self::$version;
+
+	}
+
+	/**
 	 * Adds the new check
 	 * @param  string $check_name name of the check
 	 * @param  mixed  $callback   callable string or array
@@ -95,7 +111,6 @@ class underDEV_Requirements {
 		return $this;
 
 	}
-
 
 	/**
 	 * Adds the error
