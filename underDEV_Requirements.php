@@ -10,6 +10,8 @@ if ( ! class_exists( 'underDEV_Requirements' ) ) :
 
 class underDEV_Requirements {
 
+	const VERSION = '1.3.0';
+
 	/**
 	 * Plugin display name
 	 * @var string
@@ -95,7 +97,6 @@ class underDEV_Requirements {
 		return $this;
 
 	}
-
 
 	/**
 	 * Adds the error
@@ -193,7 +194,7 @@ class underDEV_Requirements {
 	public function check_wp( $version, $requirements ) {
 
 		if ( version_compare( get_bloginfo( 'version' ), $version, '<' ) ) {
-			$requirements->add_error( sprintf( __( 'Minimum required versioin of WordPress is %s. Your version is %s', $this->textdomain ), $version, get_bloginfo( 'version' ) ) );
+			$requirements->add_error( sprintf( __( 'Minimum required version of WordPress is %s. Your version is %s', $this->textdomain ), $version, get_bloginfo( 'version' ) ) );
 		}
 
 	}

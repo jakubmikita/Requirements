@@ -28,7 +28,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../underDEV_Requirements.php:196
-msgid "Minimum required versioin of WordPress is %s. Your version is %s"
+msgid "Minimum required version of WordPress is %s. Your version is %s"
 msgstr ""
 
 #: ../underDEV_Requirements.php:224
