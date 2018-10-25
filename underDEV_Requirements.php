@@ -2,13 +2,15 @@
 /**
  * Requirements checks for WordPress plugin
  * @autor   Kuba Mikita (jakub@underdev.it)
- * @version 1.3.0
+ * @version 1.3.1
  * @usage   see https://github.com/Kubitomakita/Requirements
  */
 
 if ( ! class_exists( 'underDEV_Requirements' ) ) :
 
 class underDEV_Requirements {
+
+	const VERSION = '1.3.1';
 
 	/**
 	 * Plugin display name
@@ -95,7 +97,6 @@ class underDEV_Requirements {
 		return $this;
 
 	}
-
 
 	/**
 	 * Adds the error
@@ -193,7 +194,7 @@ class underDEV_Requirements {
 	public function check_wp( $version, $requirements ) {
 
 		if ( version_compare( get_bloginfo( 'version' ), $version, '<' ) ) {
-			$requirements->add_error( sprintf( __( 'Minimum required versioin of WordPress is %s. Your version is %s', $this->textdomain ), $version, get_bloginfo( 'version' ) ) );
+			$requirements->add_error( sprintf( __( 'Minimum required version of WordPress is %s. Your version is %s', $this->textdomain ), $version, get_bloginfo( 'version' ) ) );
 		}
 
 	}
