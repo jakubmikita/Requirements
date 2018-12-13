@@ -53,7 +53,13 @@ class underDEV_Requirements {
 		$this->plugin_name = $plugin_name;
 
 		// Load translations
-		load_textdomain( $this->textdomain, dirname( __FILE__ ) . '/languages/' . $this->textdomain . '-' . get_user_locale() . '.mo' );
+		if ( function_exists( 'get_user_locale' ) ) {
+			$locale = get_user_locale();
+		} else {
+			$locale = get_locale();
+		}
+
+		load_textdomain( $this->textdomain, dirname( __FILE__ ) . '/languages/' . $this->textdomain . '-' . $locale . '.mo' );
 
 		// Add default checks
 		$this->add_check( 'php', array( $this, 'check_php' ) );
