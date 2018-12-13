@@ -2,7 +2,7 @@
 /**
  * Requirements checks for WordPress plugin
  * @autor   Kuba Mikita (jakub@underdev.it)
- * @version 1.3.1
+ * @version 1.3.2
  * @usage   see https://github.com/Kubitomakita/Requirements
  */
 
@@ -10,7 +10,7 @@ if ( ! class_exists( 'underDEV_Requirements' ) ) :
 
 class underDEV_Requirements {
 
-	const VERSION = '1.3.1';
+	const VERSION = '1.3.2';
 
 	/**
 	 * Plugin display name
@@ -53,7 +53,13 @@ class underDEV_Requirements {
 		$this->plugin_name = $plugin_name;
 
 		// Load translations
-		load_textdomain( $this->textdomain, dirname( __FILE__ ) . '/languages/' . $this->textdomain . '-' . get_user_locale() . '.mo' );
+		if ( function_exists( 'get_user_locale' ) ) {
+			$locale = get_user_locale();
+		} else {
+			$locale = get_locale();
+		}
+
+		load_textdomain( $this->textdomain, dirname( __FILE__ ) . '/languages/' . $this->textdomain . '-' . $locale . '.mo' );
 
 		// Add default checks
 		$this->add_check( 'php', array( $this, 'check_php' ) );
