@@ -214,7 +214,12 @@ class underDEV_Requirements {
 	 */
 	public function check_plugins( $plugins, $requirements ) {
 
-		$active_plugins_raw      = wp_get_active_and_valid_plugins();
+		$active_plugins_raw = wp_get_active_and_valid_plugins();
+
+		if ( is_multisite() ) {
+			$active_plugins_raw = array_merge( $active_plugins_raw, wp_get_active_network_plugins() );
+		}
+
 		$active_plugins          = array();
 		$active_plugins_versions = array();
 
