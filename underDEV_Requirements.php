@@ -2,7 +2,7 @@
 /**
  * Requirements checks for WordPress plugin
  * @autor   Kuba Mikita (jakub@underdev.it)
- * @version 1.3.2
+ * @version 1.3.3
  * @usage   see https://github.com/Kubitomakita/Requirements
  */
 
@@ -10,7 +10,7 @@ if ( ! class_exists( 'underDEV_Requirements' ) ) :
 
 class underDEV_Requirements {
 
-	const VERSION = '1.3.2';
+	const VERSION = '1.3.3';
 
 	/**
 	 * Plugin display name
@@ -214,7 +214,12 @@ class underDEV_Requirements {
 	 */
 	public function check_plugins( $plugins, $requirements ) {
 
-		$active_plugins_raw      = wp_get_active_and_valid_plugins();
+		$active_plugins_raw = wp_get_active_and_valid_plugins();
+
+		if ( is_multisite() ) {
+			$active_plugins_raw = array_merge( $active_plugins_raw, wp_get_active_network_plugins() );
+		}
+
 		$active_plugins          = array();
 		$active_plugins_versions = array();
 
